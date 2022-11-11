@@ -1,0 +1,9 @@
+{% extends 'listings/base.html' %}
+{% block content %}
+    <h1>Modification du Groupe</h1>      
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input value="valider" type="submit" />
+    </form>
+{% endblock  %}

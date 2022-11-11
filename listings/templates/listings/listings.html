@@ -1,0 +1,27 @@
+
+{% extends 'listings/base.html' %}
+
+{% block content %}
+    <p>
+        J'ai..
+        {% if listings|length < 5 %}
+            peu de
+
+        {% elif listings|length < 10 %}
+            quelques
+        {% else %}
+            baucoup d'
+        {% endif %}
+        annonce préférés ({{listings|length}}):
+    </p>
+    <ul>
+        {% for listing in  listings%}
+            <li>
+                <a href="{% url 'listings-detail' listing.id %}">{{ listing.description }}</a>
+                | <a href="{% url 'listings-change' listing.id%}"> Modifier</a>       
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'listings-create'%}"> creer</a>       
+{% endblock  %}
+

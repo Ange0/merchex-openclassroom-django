@@ -1,0 +1,28 @@
+
+{% extends 'listings/base.html' %}
+
+{% block content %}
+    <p>
+        J'ai..
+        {% if bands|length < 5 %}
+            peu de
+
+        {% elif bands|length < 10 %}
+            quelques
+        {% else %}
+            baucoup de
+        {% endif %}
+        groupes préférés ({{bands|length}}):
+    </p>
+    <ul>
+        {% for band in  bands%}
+            <li>
+                <a href="{% url 'bands-detail' band.id %}">{{ band.name }}</a>
+                | <a href="{% url 'bands-change' band.id %}">modifier</a>
+                | <a href="{% url 'bands-delete' band.id %}">supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'bands-create'%}"> creer</a>       
+{% endblock  %}
+
